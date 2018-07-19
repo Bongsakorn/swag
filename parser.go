@@ -130,6 +130,20 @@ func (parser *Parser) ParseGeneralAPIInfo(mainAPIFile string) {
 					parser.swagger.BasePath = strings.TrimSpace(commentLine[len(attribute):])
 				case "@schemes":
 					parser.swagger.Schemes = GetSchemes(commentLine)
+				case "@x-logo.url":
+					logo := map[string]string{}
+					logo["url"] = strings.TrimSpace(commentLine[len(attribute):])
+					parser.swagger.Info.AddExtension("x-logo", logo)
+					fmt.Println(parser.swagger.Info.Extensions)
+				case "@x-logo.background":
+					logo := map[string]string{}
+					logo["background"] = strings.TrimSpace(commentLine[len(attribute):])
+					k, exists := parser.swagger.Info.Extensions.GetString("x-logo")
+					if !exists {
+						parser.swagger.Info.AddExtension("x-logo", logo)
+					} else {
+						fmt.Println(k)
+					}
 				}
 			}
 
