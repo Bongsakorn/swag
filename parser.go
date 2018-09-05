@@ -111,7 +111,7 @@ func (parser *Parser) ParseGeneralAPIInfo(mainAPIFile string) {
 				case "@title":
 					parser.swagger.Info.Title = strings.TrimSpace(commentLine[len(attribute):])
 				case "@description":
-					parser.swagger.Info.Description = strings.TrimSpace(commentLine[len(attribute):])
+					parser.swagger.Info.Description = strings.Trim(strings.TrimSpace(commentLine[len(attribute):]), `'"`)
 				case "@termsofservice":
 					parser.swagger.Info.TermsOfService = strings.TrimSpace(commentLine[len(attribute):])
 				case "@contact.name":
@@ -134,15 +134,18 @@ func (parser *Parser) ParseGeneralAPIInfo(mainAPIFile string) {
 					logo := map[string]string{}
 					logo["url"] = strings.TrimSpace(commentLine[len(attribute):])
 					parser.swagger.Info.AddExtension("x-logo", logo)
-					fmt.Println(parser.swagger.Info.Extensions)
+					if parser.swagger.Info.Extensions["x-logo"] != nil {
+						parser.swagger.Info.Extensions["x-logo"].(map[string]string)["url"] = strings.TrimSpace(commentLine[len(attribute):])
+					} else {
+						parser.swagger.Info.AddExtension("x-logo", logo)
+					}
 				case "@x-logo.background":
 					logo := map[string]string{}
-					logo["background"] = strings.TrimSpace(commentLine[len(attribute):])
-					k, exists := parser.swagger.Info.Extensions.GetString("x-logo")
-					if !exists {
-						parser.swagger.Info.AddExtension("x-logo", logo)
+					logo["backgroundColor"] = strings.TrimSpace(commentLine[len(attribute):])
+					if parser.swagger.Info.Extensions["x-logo"] != nil {
+						parser.swagger.Info.Extensions["x-logo"].(map[string]string)["backgroundColor"] = strings.TrimSpace(commentLine[len(attribute):])
 					} else {
-						fmt.Println(k)
+						parser.swagger.Info.AddExtension("x-logo", logo)
 					}
 				}
 			}
