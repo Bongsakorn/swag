@@ -13,7 +13,7 @@ import (
 )
 
 // Operation describes a single API operation on a path.
-// For more information: https://github.com/swaggo/swag#api-operation
+// For more information: https://github.com/Bongsakorn/swag#api-operation
 type Operation struct {
 	HTTPMethod string
 	Path       string
@@ -79,6 +79,14 @@ func (operation *Operation) ParseComment(comment string) error {
 		if err := operation.ParseSecurityComment(strings.TrimSpace(commentLine[len(attribute):])); err != nil {
 			return err
 		}
+	case "@x-code-sample":
+		codeSample := make([]map[string]interface{}, 0)
+		sample := map[string]interface{}{}
+		sample["lang"] = "cURL"
+		sample["source"] = strings.Trim(strings.TrimSpace(commentLine[len(attribute):]), `'"`)
+		// fmt.Println(sample["source"])
+		codeSample = append(codeSample, sample)
+		operation.AddExtension("x-code-samples", codeSample)
 	}
 	return nil
 }

@@ -13,9 +13,9 @@
 <p align="center">
   <a href="https://travis-ci.org/swaggo/swag"><img alt="Travis Status" src="https://img.shields.io/travis/swaggo/swag/master.svg"></a>
   <a href="https://codecov.io/gh/swaggo/swag"><img alt="Coverage Status" src="https://img.shields.io/codecov/c/github/swaggo/swag/master.svg"></a>
-  <a href="https://goreportcard.com/badge/github.com/swaggo/swag"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/swaggo/swag"></a>
+  <a href="https://goreportcard.com/badge/github.com/Bongsakorn/swag"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/Bongsakorn/swag"></a>
   <a href="https://codebeat.co/projects/github-com-swaggo-swag-master"><img alt="codebeat badge" src="https://codebeat.co/badges/71e2f5e5-9e6b-405d-baf9-7cc8b5037330" /></a>
-  <a href="https://godoc.org/github.com/swaggo/swag"><img alt="Go Doc" src="https://godoc.org/github.com/swaggo/swagg?status.svg"></a>
+  <a href="https://godoc.org/github.com/Bongsakorn/swag"><img alt="Go Doc" src="https://godoc.org/github.com/Bongsakorn/swagg?status.svg"></a>
 </p>
 
 <p align="center">gopher image source is <a href="https://github.com/tenntenn/gopher-stickers">tenntenn/gopher-stickers.</a> It has licenses <a href="http://creativecommons.org/licenses/by/3.0/deed.en">creative commons licensing.</a></p>
@@ -33,7 +33,7 @@ For a comprehensive explanation of what swag can do, check out the [swag documen
 
 2. Download swag by using:
 ```sh
-$ go get -u github.com/swaggo/swag/cmd/swag
+$ go get -u github.com/Bongsakorn/swag/cmd/swag
 ```
 
 3. Run `swag init` in the project's root folder which contains the `main.go` file. This will parse your comments and generate the required files (`docs` folder and `docs/docs.go`).
@@ -57,7 +57,7 @@ $ swag init
 
 ## How to use it with `gin`?
 
-Find the example source code [here](https://github.com/swaggo/swag/tree/master/example/celler).
+Find the example source code [here](https://github.com/Bongsakorn/swag/tree/master/example/celler).
 
 1. After using `swag init` to generate Swagger 2.0 docs, import the following packages:
 ```go
@@ -146,8 +146,8 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/swag/example/celler/httputil"
-	"github.com/swaggo/swag/example/celler/model"
+	"github.com/Bongsakorn/swag/example/celler/httputil"
+	"github.com/Bongsakorn/swag/example/celler/model"
 )
 
 // ShowAccount godoc
@@ -207,7 +207,7 @@ func (c *Controller) ListAccounts(ctx *gin.Context) {
 
 ## Examples
 
-[swaggo + gin](https://github.com/swaggo/swag/tree/master/example)
+[swaggo + gin](https://github.com/Bongsakorn/swag/tree/master/example)
 
 ## Implementation Status
 
